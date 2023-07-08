@@ -29,6 +29,8 @@ jobs:
     - run: npm i
     - run: npm run build --if-present
     - run: npm test
-    - name: Deploy
-      run: npm run deploy
+    - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: build # The folder the action should deploy.
       if: matrix.node-version == '18.x'
