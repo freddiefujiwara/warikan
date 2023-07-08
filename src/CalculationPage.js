@@ -33,7 +33,7 @@ class CalculationPage extends React.Component {
         const change = (yourSideTotal * peopleOnYourSide + otherSideTotal * peopleOnOtherSide) - totalCost;
 
         this.setState({
-            results: [...this.state.results, { yourSideTotal, otherSideTotal, change }]
+            results: [{ yourSideTotal, otherSideTotal, change }] // Replace the results array with the new result
         });
     }
 
@@ -65,13 +65,13 @@ class CalculationPage extends React.Component {
                 </form>
                 <button onClick={this.saveResult}>Save Result</button>
                 <div>
-                    {this.state.results.map((result, index) => (
-                        <div key={index}>
-                            <p>Your side total: {result.yourSideTotal}</p>
-                            <p>Other side total: {result.otherSideTotal}</p>
-                            <p>Change: {result.change}</p>
+                    {this.state.results.length > 0 && (
+                        <div>
+                            <p>Your side total: {this.state.results[this.state.results.length - 1].yourSideTotal}</p>
+                            <p>Other side total: {this.state.results[this.state.results.length - 1].otherSideTotal}</p>
+                            <p>Change: {this.state.results[this.state.results.length - 1].change}</p>
                         </div>
-                    ))}
+                    )}
                 </div>
             </div>
         );

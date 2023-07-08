@@ -22,4 +22,18 @@ test('renders form and performs calculation', async () => {
         expect(getByText(/Other side total: 0/i)).toBeInTheDocument();
         expect(getByText(/Change: 0/i)).toBeInTheDocument();
     });
+
+    // Perform a second calculation with different inputs
+    fireEvent.change(peopleOnYourSideInput, { target: { value: '3' } });
+    fireEvent.change(peopleOnOtherSideInput, { target: { value: '3' } });
+    fireEvent.change(totalCostInput, { target: { value: '300' } });
+    fireEvent.change(percentageInput, { target: { value: '60' } });
+
+    fireEvent.click(getByText(/Calculate/i));
+
+    await waitFor(() => {
+        expect(getByText(/Your side total: 100/i)).toBeInTheDocument();
+        expect(getByText(/Other side total: 0/i)).toBeInTheDocument();
+        expect(getByText(/Change: 0/i)).toBeInTheDocument();
+    });
 });
