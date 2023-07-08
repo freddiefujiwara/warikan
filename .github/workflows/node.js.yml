@@ -30,7 +30,10 @@ jobs:
     - run: npm run build --if-present
     - run: npm test
     - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: build # The folder the action should deploy.
+      uses: Cecilapp/GitHub-Pages-deploy@v3
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        email: username@domain.tld
+        build_dir: build
       if: matrix.node-version == '18.x'
